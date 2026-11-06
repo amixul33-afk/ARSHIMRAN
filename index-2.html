@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#17131f">
+  <title>ARSH IMRAN — গল্পের আঙিনা</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#100e16;--panel:#1b1722;--panel2:#211c2a;--text:#f5eff7;--muted:#b7aebe;--gold:#d7b477;--line:#382e40;--rose:#bd8295}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 80% 0%,#302236 0,transparent 34%),var(--bg);color:var(--text);font-family:'Hind Siliguri',sans-serif;min-height:100vh}
+    button{font:inherit;cursor:pointer}.wrap{width:min(1080px,92%);margin:auto}
+    header{padding:22px 0;border-bottom:1px solid #ffffff12;position:sticky;top:0;background:#100e16eF;backdrop-filter:blur(14px);z-index:5}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{font-family:'Playfair Display',serif;font-size:22px;letter-spacing:2px;color:var(--gold);font-weight:700}.nav small{color:var(--muted);font-size:13px}
+    .hero{padding:76px 0 56px;text-align:center}.eyebrow{color:var(--gold);letter-spacing:3px;font-size:12px;text-transform:uppercase}.hero h1{font-size:clamp(38px,7vw,68px);line-height:1.15;margin:15px 0;font-weight:600}.hero h1 span{color:var(--gold)}.hero p{color:var(--muted);font-size:17px;max-width:570px;margin:0 auto 26px;line-height:1.9}
+    .ornament{color:var(--gold);font-size:22px;letter-spacing:9px}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:24px 0}.section-head h2{font-size:27px;margin:0}.section-head p{margin:0;color:var(--muted);font-size:14px}
+    .story-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:18px;padding-bottom:70px}
+    .story-card{background:linear-gradient(145deg,#241e2c,#18151e);border:1px solid var(--line);border-radius:18px;padding:24px;min-height:220px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:.25s}
+    .story-card:before{content:"";position:absolute;width:150px;height:150px;border:1px solid #d7b47722;border-radius:50%;right:-60px;top:-65px;box-shadow:0 0 0 18px #d7b47708,0 0 0 38px #d7b47705}
+    .story-card:hover{transform:translateY(-5px);border-color:#8e7250}.tag{color:var(--gold);font-size:12px;letter-spacing:1px}.story-card h3{font-size:26px;margin:15px 0 8px}.story-card p{color:var(--muted);line-height:1.7;margin:0 0 20px}.open-story{margin-top:auto;align-self:flex-start;border:1px solid #8e7250;background:transparent;color:var(--gold);padding:9px 17px;border-radius:30px}
+    .view{display:none;padding:30px 0 70px}.view.active{display:block}.back{background:transparent;border:1px solid var(--line);color:var(--muted);padding:8px 15px;border-radius:30px;margin-bottom:25px}.story-title{font-size:clamp(30px,5vw,46px);margin:0 0 8px}.story-desc{color:var(--muted);margin:0 0 24px}
+    .episode-layout{display:grid;grid-template-columns:260px 1fr;gap:20px;align-items:start}.episode-list,.reader{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px}.episode-list h3{margin:0 0 14px;color:var(--gold);font-size:18px}.episode-btn{width:100%;display:block;text-align:left;background:transparent;color:var(--muted);border:0;border-radius:10px;padding:12px;margin:4px 0}.episode-btn.active,.episode-btn:hover{background:#34283a;color:var(--text)}.reader h2{font-size:25px;margin:0 0 5px}.reader .date{color:var(--gold);font-size:13px;margin-bottom:22px}.story-text{font-size:18px;line-height:2.15;white-space:pre-wrap;color:#e9e1eb}.reader-note{color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:15px;margin-top:25px}
+    .about{border-top:1px solid #ffffff12;padding:42px 0 55px;text-align:center}.about h2{margin:0 0 10px}.about p{color:var(--muted);max-width:550px;margin:0 auto;line-height:1.9}.about strong{color:var(--gold)}
+    footer{text-align:center;color:#887e8d;border-top:1px solid #ffffff12;padding:20px;font-size:13px}
+    @media(max-width:700px){.hero{padding:55px 0 40px}.episode-layout{grid-template-columns:1fr}.episode-list{padding:14px}.episode-list h3{margin-bottom:8px}.episode-btn{display:inline-block;width:auto;margin:3px;padding:9px 12px}.reader{padding:18px}.story-text{font-size:17px}.section-head{display:block}.section-head p{margin-top:5px}}
+  </style>
+</head>
+<body>
+<header><div class="wrap nav"><div class="brand">ARSH IMRAN</div><small>গল্প • অনুভব • জীবন</small></div></header>
+<main class="wrap">
+  <section id="home">
+    <div class="hero">
+      <div class="eyebrow">শব্দের ভেতর অন্য এক পৃথিবী</div>
+      <h1>গল্পের <span>আঙিনা</span></h1>
+      <p>কিছু গল্প শেষ হয়েও শেষ হয় না। কিছু অনুভূতি শব্দ হয়ে থেকে যায়—আপনার অপেক্ষায়।</p>
+      <div class="ornament">✦ ─ ✦ ─ ✦</div>
+    </div>
+    <div class="section-head"><div><h2>গল্পসমূহ</h2><p>গল্পের নাম নির্বাচন করে পর্ব পড়ুন</p></div></div>
+    <div class="story-grid" id="storyGrid"></div>
+  </section>
+
+  <section class="view" id="storyView">
+    <button class="back" onclick="goHome()">← সব গল্পে ফিরে যান</button>
+    <h1 class="story-title" id="storyTitle"></h1>
+    <p class="story-desc" id="storyDesc"></p>
+    <div class="episode-layout">
+      <aside class="episode-list"><h3>গল্পের পর্ব</h3><div id="episodeButtons"></div></aside>
+      <article class="reader">
+        <h2 id="episodeTitle">পর্ব নির্বাচন করুন</h2><div class="date" id="episodeDate"></div>
+        <div class="story-text" id="episodeText">বাম পাশ থেকে একটি পর্ব নির্বাচন করুন।</div>
+        <div class="reader-note">— ARSH IMRAN</div>
+      </article>
+    </div>
+  </section>
+</main>
+<section class="about"><div class="wrap"><h2>লেখক পরিচিতি</h2><p><strong>ARSH IMRAN</strong><br>শব্দের ভেতর অনুভূতি খুঁজে ফেরা একজন গল্পকার। জীবনের ছোট ছোট ঘটনা, নীরবতা, ভালোবাসা আর মানুষের না-বলা কথাগুলোই তাঁর লেখার অনুপ্রেরণা।</p></div></section>
+<footer>© <span id="year"></span> ARSH IMRAN · সকল স্বত্ব সংরক্ষিত</footer>
+
+<script>
+/* নতুন গল্প যোগ করতে নিচের STORIES তালিকায় আরেকটি story object যোগ করুন।
+   প্রতিটি পর্বের title, date ও content নিজের লেখা দিয়ে পূরণ করুন। */
+const STORIES = [
+  {
+    id: "shraban",
+    title: "শ্রাবণের সন্ধেবেলায়",
+    category: "ধারাবাহিক গল্প",
+    description: "একটি গল্প, কয়েকটি পর্ব—পড়ুন ধারাবাহিকভাবে।",
+    episodes: [
+      { title: "প্রথম পর্ব", date: "", content: "এখানে শ্রাবণের সন্ধেবেলায় গল্পের প্রথম পর্বের লেখা বসান।" },
+      { title: "দ্বিতীয় পর্ব", date: "", content: "এখানে শ্রাবণের সন্ধেবেলায় গল্পের দ্বিতীয় পর্বের সম্পূর্ণ লেখা বসান।" }
+    ]
+  },
+  {
+    id: "bunoful",
+    title: "বুনোফুল",
+    category: "সমাপ্ত গল্প",
+    description: "একটি সম্পূর্ণ গল্প।",
+    episodes: [
+      { title: "সম্পূর্ণ গল্প", date: "", content: "এখানে বুনোফুল গল্পের সম্পূর্ণ লেখা বসান।" }
+    ]
+  }
+];
+
+const grid = document.getElementById("storyGrid");
+const home = document.getElementById("home");
+const storyView = document.getElementById("storyView");
+let currentStory = null;
+
+function renderStories(){
+  grid.innerHTML = STORIES.map((story, index) => `
+    <article class="story-card">
+      <div class="tag">${escapeHTML(story.category || "গল্প")}</div>
+      <h3>${escapeHTML(story.title)}</h3>
+      <p>${escapeHTML(story.description || "গল্পটি পড়তে প্রবেশ করুন।")}</p>
+      <button class="open-story" onclick="openStory(${index})">গল্পটি পড়ুন →</button>
+    </article>`).join("");
+}
+function openStory(index){
+  currentStory = STORIES[index];
+  document.getElementById("storyTitle").textContent = currentStory.title;
+  document.getElementById("storyDesc").textContent = currentStory.description || "";
+  document.getElementById("episodeButtons").innerHTML = currentStory.episodes.map((ep,i)=>
+    `<button class="episode-btn ${i===0?'active':''}" onclick="showEpisode(${i},this)">${escapeHTML(ep.title)}</button>`
+  ).join("");
+  home.style.display = "none";
+  storyView.classList.add("active");
+  if(currentStory.episodes.length) showEpisode(0, document.querySelector(".episode-btn"));
+  else {
+    document.getElementById("episodeTitle").textContent = "এখনো কোনো পর্ব যোগ করা হয়নি";
+    document.getElementById("episodeDate").textContent = "";
+    document.getElementById("episodeText").textContent = "";
+  }
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function showEpisode(index, button){
+  const ep = currentStory.episodes[index];
+  document.querySelectorAll(".episode-btn").forEach(b=>b.classList.remove("active"));
+  if(button) button.classList.add("active");
+  document.getElementById("episodeTitle").textContent = ep.title;
+  document.getElementById("episodeDate").textContent = ep.date || "";
+  document.getElementById("episodeText").textContent = ep.content;
+}
+function goHome(){
+  storyView.classList.remove("active");
+  home.style.display = "block";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+}
+document.getElementById("year").textContent = new Date().getFullYear();
+renderStories();
+</script>
+</body>
+</html>
