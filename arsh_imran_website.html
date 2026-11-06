@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARSH IMRAN | বাংলা গল্পের জগৎ</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Hind Siliguri',sans-serif;background:#f5f1eb;color:#222}
+header{background:#171717;color:white;padding:25px 15px;text-align:center}
+header h1{font-size:30px;letter-spacing:3px}
+header p{color:#c7a878;margin-top:5px}
+nav{background:#252525;text-align:center;padding:12px}
+nav a{color:white;text-decoration:none;margin:0 12px;font-size:15px}
+.container{max-width:1100px;margin:30px auto;padding:15px}
+.section-title{font-size:24px;margin-bottom:20px;border-left:4px solid #a77b43;padding-left:12px}
+.stories{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:20px}
+.story-card{background:white;border-radius:8px;overflow:hidden;box-shadow:0 3px 12px #00000015;cursor:pointer;transition:.3s}
+.story-card:hover{transform:translateY(-5px)}
+.story-card img{width:100%;height:230px;object-fit:cover}
+.story-info{padding:12px}
+.story-info h3{font-size:18px}
+.story-info p{font-size:13px;color:#777;margin-top:5px}
+#reader{display:none;background:white;padding:25px;border-radius:8px;box-shadow:0 3px 15px #00000010}
+#reader h2{text-align:center;margin-bottom:10px}
+.episode-list{margin:25px 0}
+.episode{padding:14px;border-bottom:1px solid #eee;cursor:pointer;font-size:17px}
+.episode:hover{background:#f5f1eb}
+#episode-content{display:none;margin-top:25px}
+#episode-content h3{text-align:center;margin-bottom:25px}
+#episode-text{font-size:18px;line-height:2;text-align:justify;white-space:pre-wrap}
+.reader-buttons{display:flex;justify-content:space-between;margin-top:30px;gap:10px}
+button{background:#222;color:white;border:none;padding:12px 20px;border-radius:5px;cursor:pointer;font-family:inherit;font-size:15px}
+button:hover{background:#a77b43}
+.back{margin-bottom:20px}
+footer{background:#171717;color:#aaa;text-align:center;padding:25px;margin-top:50px}
+@media(max-width:600px){header h1{font-size:25px}.stories{grid-template-columns:repeat(2,1fr);gap:12px}.story-card img{height:190px}#reader{padding:17px}#episode-text{font-size:17px}}
+</style>
+</head>
+<body>
+<header><h1>ARSH IMRAN</h1><p>শব্দের ভেতর অন্য এক পৃথিবী</p></header>
+<nav><a href="#" onclick="showHome()">হোম</a><a href="#stories">গল্পসমূহ</a><a href="#about">লেখক</a></nav>
+<div class="container">
+  <div id="home"><h2 class="section-title" id="stories">আমার গল্পসমূহ</h2><div class="stories" id="story-container"></div></div>
+  <div id="reader">
+    <button class="back" onclick="showHome()">← ফিরে যান</button>
+    <h2 id="story-title"></h2><p id="story-author" style="text-align:center;color:#888;margin:10px 0;"></p>
+    <div class="episode-list" id="episode-list"></div>
+    <div id="episode-content"><h3 id="episode-title"></h3><div id="episode-text"></div>
+      <div class="reader-buttons"><button onclick="previousEpisode()">← আগের পর্ব</button><button onclick="nextEpisode()">পরবর্তী পর্ব →</button></div>
+    </div>
+  </div>
+</div>
+<footer id="about"><h3>ARSH IMRAN</h3><p>লেখক: IMRANUL AMIN</p><p>© 2026 All Rights Reserved</p></footer>
+<script>
+const stories = [
+ {id:1,title:"ছায়াকোটাল",author:"IMRANUL AMIN",cover:"https://placehold.co/400x550/242424/c7a878?text=CHHAYAKOTAL",episodes:[
+  {title:"প্রথম পর্ব",content:"এখানে প্রথম পর্বের সম্পূর্ণ গল্প লিখুন।"},
+  {title:"দ্বিতীয় পর্ব",content:"এখানে দ্বিতীয় পর্বের সম্পূর্ণ গল্প লিখুন।"},
+  {title:"তৃতীয় পর্ব",content:"এখানে তৃতীয় পর্বের সম্পূর্ণ গল্প লিখুন।"}]},
+ {id:2,title:"অশান্ত আগুন",author:"IMRANUL AMIN",cover:"https://placehold.co/400x550/332222/ffffff?text=ASHANTO+AGUN",episodes:[
+  {title:"প্রথম পর্ব",content:"এখানে গল্পের প্রথম পর্ব লিখুন।"}]},
+ {id:3,title:"কাজলদিঘীর অপরাজিতা",author:"IMRANUL AMIN",cover:"https://placehold.co/400x550/24332c/ffffff?text=APARAJITA",episodes:[
+  {title:"প্রথম পর্ব",content:"এখানে প্রথম পর্বের গল্প লিখুন।"}]}
+];
+let currentStory=null,currentEpisode=0;
+function loadStories(){
+ const container=document.getElementById("story-container");container.innerHTML="";
+ stories.forEach(story=>{
+  const card=document.createElement("div");card.className="story-card";
+  const img=document.createElement("img");img.src=story.cover;img.alt=story.title;
+  const info=document.createElement("div");info.className="story-info";
+  const title=document.createElement("h3");title.textContent=story.title;
+  const author=document.createElement("p");author.textContent="লেখক: "+story.author;
+  const count=document.createElement("p");count.textContent=story.episodes.length+" টি পর্ব";
+  info.append(title,author,count);card.append(img,info);card.onclick=()=>openStory(story.id);container.appendChild(card);
+ });
+}
+function openStory(id){
+ currentStory=stories.find(s=>s.id===id);
+ document.getElementById("home").style.display="none";document.getElementById("reader").style.display="block";
+ document.getElementById("story-title").textContent=currentStory.title;
+ document.getElementById("story-author").textContent="লেখক: "+currentStory.author;
+ const list=document.getElementById("episode-list");list.innerHTML="<h3>গল্পের পর্বসমূহ</h3>";
+ currentStory.episodes.forEach((episode,index)=>{
+  const item=document.createElement("div");item.className="episode";item.textContent=episode.title+"  →";
+  item.onclick=()=>showEpisode(index);list.appendChild(item);
+ });
+ document.getElementById("episode-content").style.display="none";window.scrollTo(0,0);
+}
+function showEpisode(index){
+ if(index<0||index>=currentStory.episodes.length)return;
+ currentEpisode=index;const episode=currentStory.episodes[index];
+ document.getElementById("episode-content").style.display="block";
+ document.getElementById("episode-title").textContent=episode.title;
+ document.getElementById("episode-text").textContent=episode.content;window.scrollTo(0,0);
+}
+function nextEpisode(){if(currentEpisode<currentStory.episodes.length-1)showEpisode(currentEpisode+1);else alert("এটাই এখন পর্যন্ত শেষ পর্ব। নতুন পর্ব শীঘ্রই আসবে।")}
+function previousEpisode(){if(currentEpisode>0)showEpisode(currentEpisode-1);else alert("এটি প্রথম পর্ব।")}
+function showHome(){document.getElementById("home").style.display="block";document.getElementById("reader").style.display="none";window.scrollTo(0,0)}
+loadStories();
+</script>
+</body>
+</html>
