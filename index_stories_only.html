@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101010">
+<title>ARSH IMRAN — শব্দে বোনা অনুভূতি</title>
+<style>
+:root{--bg:#101010;--panel:#191919;--text:#f3eee4;--muted:#aaa398;--gold:#c9a45c;--line:#39342b}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,"Noto Sans Bengali",sans-serif;line-height:1.8}
+header{text-align:center;padding:26px 18px 20px;border-bottom:1px solid var(--line);background:linear-gradient(150deg,#1d1a14,#101010 70%)}.brand{font-family:Georgia,serif;letter-spacing:3px;color:var(--gold);font-size:clamp(28px,7vw,48px);margin:0}.tag{color:var(--muted);margin:4px 0 0}.eyebrow{font-size:11px;letter-spacing:3px;color:var(--gold);margin-top:8px}
+nav{display:flex;justify-content:center;gap:22px;padding:12px;border-bottom:1px solid var(--line);flex-wrap:wrap}nav a{color:var(--text);text-decoration:none;font-size:14px}nav a:hover{color:var(--gold)}
+main{max-width:900px;margin:auto;padding:28px 18px 60px}.intro{text-align:center;padding:24px 0 32px}.intro h2{font-family:Georgia,serif;font-weight:500;font-size:25px;margin:0 0 8px}.intro p{color:var(--muted);margin:0}.section-title{color:var(--gold);font-size:19px;border-bottom:1px solid var(--line);padding-bottom:10px;margin:20px 0}
+.search{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px 15px;color:var(--text);font:inherit;margin:4px 0 18px}.empty{background:var(--panel);border:1px dashed #5a4b30;border-radius:12px;padding:28px 18px;text-align:center;color:var(--muted)}.empty strong{display:block;color:var(--gold);font-size:18px;margin-bottom:5px}
+.story-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:15px}.story{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;cursor:pointer}.story:hover{border-color:var(--gold)}.story h3{margin:0 0 7px;color:var(--gold);font-size:20px}.story p{margin:0;color:var(--muted);font-size:14px}
+button{background:transparent;border:1px solid var(--gold);color:var(--gold);border-radius:8px;padding:8px 13px;font:inherit;cursor:pointer}.back{margin-bottom:18px}.episode{background:var(--panel);padding:20px;border:1px solid var(--line);border-radius:12px;margin:12px 0}.episode h3{color:var(--gold);margin:0 0 10px}.episode-body{white-space:pre-wrap}.hidden{display:none!important}footer{text-align:center;border-top:1px solid var(--line);padding:24px;color:var(--muted);font-size:13px}@media(max-width:520px){main{padding:18px 14px 45px}.intro{padding:18px 0 25px}}
+</style></head><body>
+<header><p class="eyebrow">A PERSONAL STORY COLLECTION</p><h1 class="brand">ARSH IMRAN</h1><p class="tag">শব্দে বোনা অনুভূতি</p></header>
+<nav><a href="#" id="homeLink">হোম</a><a href="#about">লেখক পরিচিতি</a></nav>
+<main>
+<section id="homeView"><div class="intro"><h2>গল্পের পাতায় স্বাগতম</h2><p>কিছু অনুভূতি শব্দ হয়ে বেঁচে থাকুক।</p></div><h2 class="section-title">গল্পসমূহ</h2><input id="search" class="search" type="search" placeholder="গল্পের নাম খুঁজুন…" aria-label="গল্প খুঁজুন"><div id="storyList" class="story-list"></div></section>
+<section id="storyView" class="hidden"><button class="back" id="backButton">← সব গল্পে ফিরে যান</button><div id="storyContent"></div></section>
+<section id="about" style="margin-top:48px"><h2 class="section-title">লেখক পরিচিতি</h2><p><strong style="color:var(--gold)">ARSH IMRAN</strong></p><p style="color:var(--muted)">শব্দের ভেতর অনুভূতি খুঁজি, আর গল্পের ভেতর রেখে যাই কিছু না-বলা কথা।</p></section>
+</main><footer>© <span id="year"></span> ARSH IMRAN · All rights reserved</footer>
+<script>
+/* নতুন গল্প যোগ করতে STORIES তালিকায় object যোগ করুন। প্রতিটি পর্ব episodes তালিকায় দিন। */
+const STORIES = [
+  // {id:"shraboner-sondhay",title:"শ্রাবণের সন্ধেবেলায়",category:"উপন্যাস",description:"গল্পের পরিচিতি",episodes:[{title:"প্রথম পর্ব",content:"এখানে গল্পের লেখা বসান।"}]}
+];
+const $=id=>document.getElementById(id);
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function renderStories(filter=""){const list=$("storyList"),items=STORIES.filter(s=>(s.title+" "+(s.category||"")).toLowerCase().includes(filter.toLowerCase()));
+if(!items.length){list.innerHTML=`<div class="empty" style="grid-column:1/-1"><strong>${STORIES.length?"কোনো গল্প পাওয়া যায়নি":"এখনো কোনো গল্প প্রকাশিত হয়নি"}</strong>${STORIES.length?"অন্য নামে খুঁজে দেখুন।":"নতুন গল্প যোগ হলে সেগুলো এখানে দেখা যাবে।"}</div>`;return}
+list.innerHTML=items.map(s=>`<article class="story" tabindex="0" data-id="${encodeURIComponent(s.id)}"><h3>${esc(s.title)}</h3><p>${esc(s.category||"গল্প")} · ${(s.episodes||[]).length}টি পর্ব</p><p style="margin-top:8px">${esc(s.description||"")}</p></article>`).join("");
+list.querySelectorAll(".story").forEach(card=>{const open=()=>showStory(decodeURIComponent(card.dataset.id));card.addEventListener("click",open);card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}})})}
+function showStory(id){const s=STORIES.find(x=>x.id===id);if(!s)return;$("homeView").classList.add("hidden");$("storyView").classList.remove("hidden");
+const eps=(s.episodes||[]).map((ep,i)=>`<article class="episode"><h3>${esc(ep.title||("পর্ব "+(i+1)))}</h3><div class="episode-body">${esc(ep.content||"")}</div></article>`).join("");
+$("storyContent").innerHTML=`<h2 class="section-title">${esc(s.title)}</h2><p style="color:var(--muted)">${esc(s.category||"গল্প")}</p><p>${esc(s.description||"")}</p>${eps||'<div class="empty">এই গল্পের পর্ব এখনো যোগ করা হয়নি।</div>'}`;location.hash="story="+encodeURIComponent(id)}
+function home(){$("storyView").classList.add("hidden");$("homeView").classList.remove("hidden");location.hash="";renderStories($("search").value)}
+$("backButton").onclick=home;$("homeLink").onclick=e=>{e.preventDefault();home()};$("search").addEventListener("input",e=>renderStories(e.target.value));$("year").textContent=new Date().getFullYear();renderStories();if(location.hash.startsWith("#story="))showStory(decodeURIComponent(location.hash.slice(7)));
+</script></body></html>
